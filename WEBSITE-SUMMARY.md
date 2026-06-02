@@ -88,7 +88,7 @@ A complete, professional blog website with brand-consistent design matching your
 
 ### To Customize:
 1. Replace placeholder images with your own
-2. Update social media links (LinkedIn, Twitter, Instagram)
+2. Update social media links (Pinterest, Email, Instagram)
 3. Add your actual email address
 4. Add your logo image file
 5. Write additional blog posts using the existing post templates
