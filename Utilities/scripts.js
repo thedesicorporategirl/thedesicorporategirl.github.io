@@ -65,6 +65,53 @@ function setActiveNavLink() {
     });
 }
 
+// Update featured posts on homepage with dynamic read times
+async function updateFeaturedPosts() {
+    const postCards = document.querySelectorAll('.post-card[data-post-url]');
+    
+    for (const card of postCards) {
+        const postUrl = card.getAttribute('data-post-url');
+        const readTimeSpan = card.querySelector('.post-read-time');
+        const dateSpan = card.querySelector('.post-date');
+        
+        if (postUrl) {
+            try {
+                const response = await fetch(postUrl);
+                const html = await response.text();
+                
+                // Create a temporary DOM element to parse the HTML
+                const parser = new DOMParser();
+                const doc = parser.parseFromString(html, 'text/html');
+                
+                // Extract date from post-meta in the blog post
+                const postMeta = doc.querySelector('.post-meta');
+                if (postMeta && dateSpan) {
+                    const metaText = postMeta.textContent;
+                    // Extract date (everything before the •)
+                    const dateMatch = metaText.match(/^([^•]+)/);
+                    if (dateMatch) {
+                        dateSpan.textContent = dateMatch[1].trim();
+                    }
+                }
+                
+                // Calculate read time
+                const article = doc.querySelector('.post-content-full');
+                if (article && readTimeSpan) {
+                    const text = article.textContent || article.innerText;
+                    const wordCount = text.trim().split(/\s+/).length;
+                    const wordsPerMinute = 200;
+                    const readTime = Math.ceil(wordCount / wordsPerMinute);
+                    if (readTime > 0) {
+                        readTimeSpan.textContent = readTime;
+                    }
+                }
+            } catch (error) {
+                console.error(`Error updating featured post ${postUrl}:`, error);
+            }
+        }
+    }
+}
+
 // Auto-calculate reading time based on word count
 document.addEventListener('DOMContentLoaded', function() {
     // Load header and footer first
@@ -89,6 +136,11 @@ document.addEventListener('DOMContentLoaded', function() {
     // Initialize blog posts if on blog listing page
     if (document.querySelector('.blog-list')) {
         loadBlogPosts();
+    }
+    
+    // Update featured posts on homepage
+    if (document.querySelector('.featured-posts')) {
+        updateFeaturedPosts();
     }
 });
 
