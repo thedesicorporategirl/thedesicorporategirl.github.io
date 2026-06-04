@@ -15,10 +15,7 @@ The Desi Corporate Girl is a blog dedicated to sharing insights, tips, and real 
 - **contact.html** - Contact information and ways to connect
 - **Post Pages:**
   - post-career-growth.html - 5 Strategies for Career Growth
-  - post-work-life-balance.html - Mastering Work-Life Balance
   - post-leadership-skills.html - Developing Leadership Skills
-  - post-networking.html - The Art of Networking
-  - post-personal-branding.html - Building Your Personal Brand
 
 ### Styling
 - **styles.css** - Complete stylesheet with brand colors and responsive design

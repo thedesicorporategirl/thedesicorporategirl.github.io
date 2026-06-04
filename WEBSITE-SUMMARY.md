@@ -12,10 +12,7 @@ A complete, professional blog website with brand-consistent design matching your
 3. ✅ **about.html** - About page
 4. ✅ **contact.html** - Contact page
 5. ✅ **post-career-growth.html** - Blog post
-6. ✅ **post-work-life-balance.html** - Blog post
-7. ✅ **post-leadership-skills.html** - Blog post
-8. ✅ **post-networking.html** - Blog post
-9. ✅ **post-personal-branding.html** - Blog post
+6. ✅ **post-leadership-skills.html** - Blog post
 
 ### Styling & Documentation
 10. ✅ **styles.css** - Complete stylesheet
