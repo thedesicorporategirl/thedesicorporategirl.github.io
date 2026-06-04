@@ -4,13 +4,13 @@ A professional blog website for corporate professionals navigating their career 
 
 ## About
 
-The Desi Corporate Girl is a blog dedicated to sharing insights, tips, and real experiences from navigating the corporate world. The website provides practical advice on career growth, leadership development, work-life balance, and professional networking.
+The Desi Corporate Girl is a page dedicated to sharing insights, tips, and real experiences from navigating the corporate world. The website provides practical advice on career growth, leadership development, work-life balance, and professional networking.
 
 ## Website Structure
 
 ### Pages
 - **index.html** - Homepage with hero section and featured blog posts
-- **blog.html** - Complete blog listing page
+- **blog.html** - Complete blogs listing page
 - **about.html** - About page introducing the author
 - **contact.html** - Contact information and ways to connect
 - **Post Pages:**

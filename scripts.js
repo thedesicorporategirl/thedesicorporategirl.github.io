@@ -17,7 +17,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 });
 
-// Function to calculate read time for a given URL (for blog listing page)
+// Function to calculate read time for a given URL (for blogs listing page)
 async function calculateReadTimeForPost(postUrl) {
     try {
         const response = await fetch(postUrl);
