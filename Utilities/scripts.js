@@ -1,17 +1,33 @@
 // Load header and footer dynamically
 async function loadHeaderFooter() {
     try {
+        // Determine the correct path based on current location
+        const isInSubfolder = window.location.pathname.includes('/BlogPages/');
+        const pathPrefix = isInSubfolder ? '../' : '';
+        
         // Load header
-        const headerResponse = await fetch('header.html');
+        const headerResponse = await fetch(pathPrefix + 'header.html');
         const headerHTML = await headerResponse.text();
         const headerPlaceholder = document.getElementById('header-placeholder');
         if (headerPlaceholder) {
             headerPlaceholder.innerHTML = headerHTML;
+            
+            // Fix navigation links if in subfolder
+            if (isInSubfolder) {
+                const navLinks = headerPlaceholder.querySelectorAll('a[href]');
+                navLinks.forEach(link => {
+                    const href = link.getAttribute('href');
+                    if (!href.startsWith('http') && !href.startsWith('../')) {
+                        link.setAttribute('href', '../' + href);
+                    }
+                });
+            }
+            
             setActiveNavLink();
         }
         
         // Load footer
-        const footerResponse = await fetch('footer.html');
+        const footerResponse = await fetch(pathPrefix + 'footer.html');
         const footerHTML = await footerResponse.text();
         const footerPlaceholder = document.getElementById('footer-placeholder');
         if (footerPlaceholder) {
