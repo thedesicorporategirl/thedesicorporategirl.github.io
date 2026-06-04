@@ -12,13 +12,23 @@ async function loadHeaderFooter() {
         if (headerPlaceholder) {
             headerPlaceholder.innerHTML = headerHTML;
             
-            // Fix navigation links if in subfolder
+            // Fix navigation links and images if in subfolder
             if (isInSubfolder) {
+                // Fix navigation links
                 const navLinks = headerPlaceholder.querySelectorAll('a[href]');
                 navLinks.forEach(link => {
                     const href = link.getAttribute('href');
                     if (!href.startsWith('http') && !href.startsWith('../')) {
                         link.setAttribute('href', '../' + href);
+                    }
+                });
+                
+                // Fix image paths (logo)
+                const images = headerPlaceholder.querySelectorAll('img[src]');
+                images.forEach(img => {
+                    const src = img.getAttribute('src');
+                    if (!src.startsWith('http') && !src.startsWith('../')) {
+                        img.setAttribute('src', '../' + src);
                     }
                 });
             }
