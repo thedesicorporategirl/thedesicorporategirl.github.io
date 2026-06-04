@@ -1,5 +1,49 @@
+// Load header and footer dynamically
+async function loadHeaderFooter() {
+    try {
+        // Load header
+        const headerResponse = await fetch('header.html');
+        const headerHTML = await headerResponse.text();
+        const headerPlaceholder = document.getElementById('header-placeholder');
+        if (headerPlaceholder) {
+            headerPlaceholder.innerHTML = headerHTML;
+            setActiveNavLink();
+        }
+        
+        // Load footer
+        const footerResponse = await fetch('footer.html');
+        const footerHTML = await footerResponse.text();
+        const footerPlaceholder = document.getElementById('footer-placeholder');
+        if (footerPlaceholder) {
+            footerPlaceholder.innerHTML = footerHTML;
+        }
+    } catch (error) {
+        console.error('Error loading header/footer:', error);
+    }
+}
+
+// Set active navigation link based on current page
+function setActiveNavLink() {
+    const currentPage = window.location.pathname.split('/').pop() || 'index.html';
+    const navLinks = document.querySelectorAll('.nav-menu a');
+    
+    navLinks.forEach(link => {
+        const linkPage = link.getAttribute('href');
+        if (linkPage === currentPage || 
+            (currentPage === '' && linkPage === 'index.html') ||
+            (currentPage.startsWith('post-') && linkPage === 'blog.html')) {
+            link.classList.add('active');
+        } else {
+            link.classList.remove('active');
+        }
+    });
+}
+
 // Auto-calculate reading time based on word count
 document.addEventListener('DOMContentLoaded', function() {
+    // Load header and footer first
+    loadHeaderFooter();
+    
     const article = document.querySelector('.post-content-full');
     const readTimeElement = document.getElementById('read-time');
     
@@ -14,6 +58,11 @@ document.addEventListener('DOMContentLoaded', function() {
         
         // Update the read time in the page
         readTimeElement.textContent = readTime;
+    }
+    
+    // Initialize blog posts if on blog listing page
+    if (document.querySelector('.blog-list')) {
+        loadBlogPosts();
     }
 });
 
@@ -71,9 +120,4 @@ async function loadBlogPosts() {
             blogPostsContainer.appendChild(postCard);
         }
     }
-}
-
-// Initialize blog posts if on blog listing page
-if (document.querySelector('.blog-list')) {
-    loadBlogPosts();
 }
