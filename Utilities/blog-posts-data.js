@@ -15,5 +15,13 @@ const blogPostsData = [
         image: 'https://images.unsplash.com/photo-1487017159836-4e23ece2e4cf?w=600&h=400&fit=crop',
         imageAlt: 'Leadership',
         excerpt: 'Why waiting to develop leadership skills is a mistake and how to start building them today. Explore actionable ways to demonstrate leadership qualities, even if you\'re not in a management position yet.'
+    },
+    {
+        url: 'BlogPages/post-template.html',
+        title: 'Developing Leadership Skills Early in Your Career',
+        date: 'May 20, 2026',
+        image: 'https://images.unsplash.com/photo-1487017159836-4e23ece2e4cf?w=600&h=400&fit=crop',
+        imageAlt: 'Leadership',
+        excerpt: 'Why waiting to develop leadership skills is a mistake and how to start building them today. Explore actionable ways to demonstrate leadership qualities, even if you\'re not in a management position yet.'
     }
 ];

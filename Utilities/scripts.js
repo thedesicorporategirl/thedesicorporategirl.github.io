@@ -112,10 +112,57 @@ async function updateFeaturedPosts() {
     }
 }
 
+// Function to populate blog post metadata (title, h1, date) from blog-posts-data.js
+function populateBlogPostMetadata() {
+    // Only run this on blog post pages (in BlogPages folder)
+    const isInBlogPages = window.location.pathname.includes('/BlogPages/');
+    if (!isInBlogPages || typeof blogPostsData === 'undefined') {
+        return;
+    }
+    
+    // Get current page filename
+    const currentPagePath = window.location.pathname;
+    const currentPageFile = currentPagePath.split('/').pop();
+    
+    // Find matching post data
+    const postData = blogPostsData.find(post => post.url.includes(currentPageFile));
+    
+    if (postData) {
+        // Update page title
+        const titleElement = document.querySelector('title');
+        if (titleElement) {
+            titleElement.textContent = `${postData.title} - The Desi Corporate Girl`;
+        }
+        
+        // Update h1 in post-header
+        const h1Element = document.querySelector('.post-header h1');
+        if (h1Element) {
+            h1Element.textContent = postData.title;
+        }
+        
+        // Update date in post-meta
+        const postMetaElement = document.querySelector('.post-meta');
+        if (postMetaElement) {
+            // Get the current read time span content
+            const readTimeSpan = postMetaElement.querySelector('#read-time');
+            if (readTimeSpan) {
+                // Preserve the read time, just update the date
+                postMetaElement.childNodes[0].textContent = postData.date + ' • ';
+            } else {
+                // If no read time element, just set the date
+                postMetaElement.textContent = postData.date;
+            }
+        }
+    }
+}
+
 // Auto-calculate reading time based on word count
 document.addEventListener('DOMContentLoaded', function() {
     // Load header and footer first
     loadHeaderFooter();
+    
+    // Populate blog post metadata from blog-posts-data.js
+    populateBlogPostMetadata();
     
     const article = document.querySelector('.post-content-full');
     const readTimeElement = document.getElementById('read-time');
