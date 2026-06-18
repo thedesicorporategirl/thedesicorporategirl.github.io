@@ -23,10 +23,9 @@ thedesicorporategirl.github.io/
 │   └── post-template.html      # Template for new blog posts
 │
 ├── Utilities/                  # JavaScript utilities
-│   ├── scripts.js              # Main JavaScript file
-│   └── blog-posts-data.js      # Blog posts metadata
-│
-└── NavigationBar/              # Empty (reserved for future use)
+   ├── scripts.js              # Main JavaScript file
+   └── blog-posts-data.js      # Blog posts metadata
+
 
 ```
 
